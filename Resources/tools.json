@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "notes": "Built-in tool catalogue. Tool ids are slugs of the names. 'aliases' are extra trigger words for detecting tools in recipe text.",
+  "categories": [
+    { "id": "appliances", "name": "Appliances", "tools": ["Oven", "Grill", "Hob", "Microwave", "Air fryer", "Slow cooker", "Pressure cooker", "Multicooker", "Rice cooker", "Electric steamer", "Stand mixer", "Hand mixer", "Blender", "Stick blender", "Food processor", "Mini chopper", "Spice grinder", "Toaster", "Sandwich toaster", "Waffle maker", "Bread maker", "Ice cream maker", "Deep fryer", "Sous vide", "Juicer", "Dehydrator", "Kettle", "Coffee machine", "Milk frother", "Pizza oven", "Barbecue"] },
+    { "id": "fridge-freezer", "name": "Fridge & freezer", "tools": ["Fridge", "Freezer", "Ice cube tray", "Ice lolly moulds", "Freezer bags", "Freezer-safe container"] },
+    { "id": "pans-pots", "name": "Pans & pots", "tools": ["Small frying pan", "Large frying pan", "Non-stick frying pan", "Cast-iron skillet", "Griddle pan", "Crêpe pan", "Wok", "Sauté pan", "Small saucepan", "Medium saucepan", "Large saucepan", "Milk pan", "Stockpot", "Casserole dish (Dutch oven)", "Steamer basket", "Double boiler (bain-marie)", "Paella pan", "Cataplana", "Tagine", "Fondue set"] },
+    { "id": "bakeware", "name": "Bakeware", "tools": ["Baking tray", "Rimmed baking sheet", "Roasting tin", "Small loaf tin (1 lb)", "Large loaf tin (2 lb)", "Round cake tin 15 cm", "Round cake tin 20 cm", "Round cake tin 23 cm", "Springform tin", "Square tin", "Traybake tin", "Bundt tin", "Swiss roll tin", "Muffin tin (12-hole)", "Mini muffin tin", "Yorkshire pudding tin", "Loose-bottomed tart tin", "Mini tart tins", "Custard tart tins", "Pie dish", "Madeleine tin", "Doughnut tin", "Silicone mould", "Pizza stone", "Pizza tray", "Proving basket (banneton)", "Cooling rack", "Baking beans"] },
+    { "id": "dishes-containers", "name": "Dishes & containers", "tools": ["Shallow glass container", "Deep glass container", "Glass container with lid", "Shallow glass baking dish", "Deep glass baking dish", "Glass mixing bowl", "Glass jug", "Shallow metal container", "Deep metal container", "Shallow metal tray", "Deep metal tray", "Metal mixing bowl", "Shallow ceramic dish", "Deep ceramic dish", "Lasagne dish", "Gratin dish", "Ceramic mixing bowl", "Ramekins", "Pudding basin", "Shallow plastic container", "Deep plastic container", "Plastic mixing bowl", "Silicone container", "Airtight tin", "Kilner jar", "Glass jar with lid", "Serving platter", "Cake stand"] },
+    { "id": "prep-cutting", "name": "Prep & cutting", "tools": ["Chef's knife", "Paring knife", "Bread knife", "Carving knife", "Cleaver", "Kitchen scissors", "Wooden chopping board", "Plastic chopping board", "Peeler", "Box grater", "Microplane zester", "Mandoline", "Spiralizer", "Garlic press", "Citrus juicer", "Pestle and mortar", "Pepper mill", "Salad spinner", "Colander", "Fine sieve", "Funnel", "Potato masher", "Potato ricer", "Apple corer", "Can opener", "Meat mallet", "Kitchen twine", "Metal skewers", "Wooden skewers"] },
+    { "id": "utensils", "name": "Utensils", "tools": ["Wooden spoon", "Silicone spatula", "Fish slice", "Slotted spoon", "Ladle", "Tongs", "Balloon whisk", "Flat whisk", "Spider skimmer", "Pasta server", "Palette knife", "Offset spatula", "Pastry brush", "Basting brush", "Ice cream scoop", "Cookie scoop", "Oven gloves", "Trivet", "Splatter guard"] },
+    { "id": "measuring", "name": "Measuring", "tools": ["Digital scale", "Measuring jug", "Measuring cups", "Measuring spoons", "Kitchen timer", "Meat thermometer", "Sugar thermometer", "Oven thermometer"] },
+    { "id": "baking-decorating", "name": "Baking & decorating", "tools": ["Rolling pin", "Pastry cutter", "Dough scraper", "Cookie cutters", "Round biscuit cutters", "Paper cupcake cases", "Silicone cupcake cases", "Foil cupcake cases", "Tulip muffin wraps", "Piping bags", "Round piping nozzle", "Star piping nozzle", "Cake turntable", "Cake leveller", "Cake tester", "Icing scraper", "Flour shaker", "Bread lame", "Chocolate moulds", "Cake pop sticks"] },
+    { "id": "wraps-lining", "name": "Wraps & lining", "tools": ["Baking paper", "Silicone baking mat", "Foil", "Cling film", "Beeswax wraps", "Zip-lock bags", "Muslin cloth"] },
+    { "id": "specialist", "name": "Specialist", "tools": ["Pasta machine", "Ravioli cutter", "Gnocchi board", "Pasta drying rack", "Sushi mat", "Tortilla press", "Raclette grill", "Blowtorch", "Smoker"] }
+  ],
+  "aliases": {
+    "Oven": ["preheat", "bake", "roast", "°c", "gas mark", "fan oven"],
+    "Fridge": ["chill", "refrigerate", "refrigerator", "set in the fridge"],
+    "Freezer": ["freeze", "frozen until"],
+    "Stand mixer": ["kitchenaid", "stand-mixer", "dough hook", "paddle attachment"],
+    "Hand mixer": ["electric whisk", "hand whisk", "beaters"],
+    "Balloon whisk": ["whisk"],
+    "Stick blender": ["immersion blender", "hand blender"],
+    "Food processor": ["blitz", "pulse"],
+    "Springform tin": ["springform"],
+    "Shallow glass baking dish": ["pyrex"],
+    "Double boiler (bain-marie)": ["bain-marie", "bain marie", "heatproof bowl over"],
+    "Casserole dish (Dutch oven)": ["dutch oven", "le creuset", "lidded casserole"],
+    "Microplane zester": ["zest", "microplane"],
+    "Paper cupcake cases": ["cupcake cases", "muffin cases", "paper cases"],
+    "Baking paper": ["parchment", "greaseproof", "line the tin", "line a tray"],
+    "Colander": ["drain"],
+    "Fine sieve": ["sift", "strain", "sieve"],
+    "Rolling pin": ["roll out"],
+    "Piping bags": ["pipe", "piping"]
+  }
+}

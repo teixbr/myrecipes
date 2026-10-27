@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Recipe builder</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,100&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FAF6F2; color: #3D3632; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="flex: none; padding: 54px 16px 8px; display: flex; align-items: center; justify-content: space-between">
+    <a href="D_Library.dc.html" style="font-size: 15px; font-weight: 500; color: #4A6350; text-decoration: none; padding: 10px 6px">Cancel</a>
+    <span style="font-size: 15px; font-weight: 700">New recipe</span>
+    <button style="height: 36px; padding: 0 16px; border-radius: 18px; border: none; background: #5E7A64; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 700">Save</button>
+  </div>
+  <div style="flex: 1; min-height: 0; overflow-y: auto; padding: 6px 18px 16px; display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{blocks}}" as="b" hint-placeholder-count="6">
+      <div style="position: relative; padding: {{b.pad}}; border-radius: 18px; border: 1.5px solid {{b.border}}; background: {{b.bg}}">
+        <sc-if value="{{b.selected}}" hint-placeholder-val="{{false}}">
+          <span aria-hidden="true" style="position: absolute; left: -14px; top: 50%; margin-top: -9px; color: #B3A9A2">
+            <svg width="12" height="18" viewBox="0 0 12 18" fill="currentColor"><circle cx="3" cy="3" r="1.6"></circle><circle cx="9" cy="3" r="1.6"></circle><circle cx="3" cy="9" r="1.6"></circle><circle cx="9" cy="9" r="1.6"></circle><circle cx="3" cy="15" r="1.6"></circle><circle cx="9" cy="15" r="1.6"></circle></svg>
+          </span>
+        </sc-if>
+        <sc-if value="{{b.isHeading}}" hint-placeholder-val="{{false}}">
+          <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 100; font-weight: 500; font-size: {{b.size}}; line-height: 1.15">{{b.text}}</h2>
+        </sc-if>
+        <sc-if value="{{b.isRich}}" hint-placeholder-val="{{false}}">
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">Crisp pastry, wobbly centre. <strong style="font-weight: 700">Make the custard the night before</strong> if you can — it sets <em>much</em> better.</p>
+        </sc-if>
+        <sc-if value="{{b.isText}}" hint-placeholder-val="{{true}}">
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">{{b.text}}<sc-if value="{{b.selected}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-block; width: 2px; height: 18px; margin-left: 1px; vertical-align: -3px; background: #5E7A64"></span></sc-if></p>
+        </sc-if>
+        <sc-if value="{{b.isImage}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <div style="height: 92px; border-radius: 14px; background: #F1DCD5; display: flex; align-items: center; justify-content: center; gap: 8px; color: #7E4538; font-size: 13px; font-weight: 600">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="M21 16l-5-5-9 9"></path></svg>{{b.text}}</div>
+            <span style="font-size: 12px; color: #756C66; font-style: italic">{{b.caption}}</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{b.isTimer}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 40px; height: 40px; flex: none; border-radius: 20px; background: #5E7A64; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg>
+            </span>
+            <span style="flex: 1; display: flex; flex-direction: column">
+              <span style="font-size: 12px; color: #4A6350; font-weight: 600">Timer</span>
+              <span style="font-size: 16px; font-weight: 700">{{b.text}}</span>
+            </span>
+            <span style="font-size: 13px; font-weight: 600; color: #4A6350">Tap to edit</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{b.isTip}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; gap: 10px; align-items: flex-start">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A6D3B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M9 18h6M10 21h4"></path><path d="M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"></path></svg>
+            <p style="margin: 0; font-size: 14px; line-height: 1.5"><strong style="font-weight: 700">Tip</strong> · {{b.text}}</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{b.isStep}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; gap: 10px; align-items: flex-start">
+            <span style="flex: none; width: 26px; height: 26px; border-radius: 13px; background: #DDE6DA; color: #3F5545; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{b.num}}</span>
+            <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #756C66">{{b.text}}</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{b.isIngredients}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 12px; font-weight: 600; color: #4A6350">Ingredients</span>
+            <span style="font-size: 15px; color: #756C66">○ Quantity · ingredient</span>
+            <span style="font-size: 15px; color: #756C66">○ Quantity · ingredient</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{b.isTools}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span style="font-size: 12px; font-weight: 600; color: #4A6350">Tools</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px">
+              <span style="padding: 6px 12px; border-radius: 14px; background: #F1DCD5; font-size: 13px">Oven · 220°C</span>
+              <span style="padding: 6px 12px; border-radius: 14px; background: #DDE6DA; font-size: 13px">Stand mixer</span>
+              <span style="padding: 6px 12px; border-radius: 14px; border: 1.5px dashed #CFC5BB; font-size: 13px; color: #756C66">+ Add</span>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{b.isDivider}}" hint-placeholder-val="{{false}}">
+          <div style="height: 1px; background: #DCD3CB"></div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <div style="flex: none; background: #FFFFFF; border-radius: 24px 24px 0 0; box-shadow: 0 -4px 20px rgba(61,54,50,0.06); padding: 10px 14px 28px; display: flex; flex-direction: column; gap: 12px">
+    <div role="toolbar" aria-label="Formatting" style="display: flex; align-items: center; gap: 6px">
+      <button aria-label="Text size: Body" style="height: 40px; padding: 0 12px; border-radius: 20px; border: none; background: #F0E9E2; color: #3D3632; font: inherit; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 6px">Aa Body
+        <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+      </button>
+      <button aria-label="Bold" aria-pressed="true" style="width: 40px; height: 40px; border-radius: 20px; border: none; background: #DDE6DA; color: #3D3632; font: inherit; font-size: 16px; font-weight: 800">B</button>
+      <button aria-label="Italic" aria-pressed="false" style="width: 40px; height: 40px; border-radius: 20px; border: none; background: transparent; color: #3D3632; font-family: Georgia, serif; font-size: 17px; font-style: italic">I</button>
+      <button aria-label="Underline" aria-pressed="false" style="width: 40px; height: 40px; border-radius: 20px; border: none; background: transparent; color: #3D3632; font: inherit; font-size: 16px; text-decoration: underline">U</button>
+      <button aria-label="Bulleted list" style="width: 40px; height: 40px; border-radius: 20px; border: none; background: transparent; color: #3D3632; display: flex; align-items: center; justify-content: center">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4 6h.01M4 12h.01M4 18h.01"></path></svg>
+      </button>
+      <button onClick="{{toggleSheet}}" aria-label="Insert block" aria-expanded="{{sheetOpen}}" style="margin-left: auto; width: 44px; height: 44px; border-radius: 22px; border: none; background: {{plusBg}}; color: {{plusFg}}; display: flex; align-items: center; justify-content: center; cursor: pointer">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+      </button>
+    </div>
+    <sc-if value="{{sheetOpen}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 12px; font-weight: 600; color: #756C66; text-transform: uppercase; letter-spacing: 0.05em">Insert below</span>
+        <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+          <sc-for list="{{options}}" as="o" hint-placeholder-count="9">
+            <button onClick="{{o.add}}" style="height: 64px; border-radius: 16px; border: none; background: {{o.bg}}; color: #3D3632; font: inherit; font-size: 11px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; cursor: pointer">
+              <sc-if value="{{o.iText}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"></path></svg></sc-if>
+              <sc-if value="{{o.iHeading}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 4v16M18 4v16M6 12h12"></path></svg></sc-if>
+              <sc-if value="{{o.iImage}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="M21 16l-5-5-9 9"></path></svg></sc-if>
+              <sc-if value="{{o.iTimer}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg></sc-if>
+              <sc-if value="{{o.iTip}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"></path><path d="M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"></path></svg></sc-if>
+              <sc-if value="{{o.iList}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"></path><circle cx="4.5" cy="6" r="1.2"></circle><circle cx="4.5" cy="12" r="1.2"></circle><circle cx="4.5" cy="18" r="1.2"></circle></svg></sc-if>
+              <sc-if value="{{o.iStep}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M11 8l2-1v10"></path></svg></sc-if>
+              <sc-if value="{{o.iDivider}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h18"></path></svg></sc-if>
+              <sc-if value="{{o.iTools}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21h12"></path><path d="M8 21V5a2 2 0 012-2h7a2 2 0 012 2v2H11"></path><path d="M11 12h8l-1.5 5h-5z"></path><path d="M15 7v5"></path></svg></sc-if>
+              {{o.label}}
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sheetOpen: true,
+      next: 10,
+      blocks: [
+        { id: 'h', type: 'heading', text: 'Custard tarts', size: '30px' },
+        { id: 'r', type: 'rich' },
+        { id: 'i', type: 'image', text: 'Photo of the finished tarts', caption: 'How the tops should look' },
+        { id: 't', type: 'timer', text: 'Bake · 18 min' },
+        { id: 'p', type: 'tip', text: 'Rotate the tray halfway for even colour.' },
+        { id: 'f', type: 'text', text: 'Dust with cinnamon and serve warm' }
+      ]
+    };
+  }
+  add(type) {
+    const tpl = {
+      text: { text: 'New paragraph' },
+      heading: { text: 'New section', size: '22px' },
+      image: { text: 'Tap to add a photo', caption: 'Add a caption' },
+      timer: { text: 'Set a time' },
+      tip: { text: 'Write a tip…' },
+      ingredients: {},
+      tools: {},
+      step: { text: 'Describe this step' },
+      divider: {}
+    }[type];
+    const id = 'n' + this.state.next;
+    this.setState({ next: this.state.next + 1, blocks: [...this.state.blocks, { id, type, ...tpl }] });
+  }
+  renderVals() {
+    const surface = { heading: 'transparent', rich: 'transparent', text: 'transparent', image: '#FFFFFF', timer: '#DDE6DA', tip: '#F7EEDB', step: '#FFFFFF', ingredients: '#FFFFFF', tools: '#FFFFFF', divider: 'transparent' };
+    const pads = { tools: '12px 14px', heading: '4px 6px', rich: '6px', text: '10px 12px', image: '10px', timer: '10px 12px', tip: '12px 14px', step: '12px', ingredients: '12px 14px', divider: '10px 6px' };
+    let stepNum = 0;
+    const blocks = this.state.blocks.map((b) => {
+      const selected = b.id === 'f';
+      if (b.type === 'step') stepNum += 1;
+      return {
+        ...b,
+        num: String(stepNum),
+        selected,
+        border: selected ? '#5E7A64' : 'transparent',
+        bg: selected ? '#FFFFFF' : surface[b.type],
+        pad: pads[b.type],
+        isHeading: b.type === 'heading',
+        isRich: b.type === 'rich',
+        isText: b.type === 'text',
+        isImage: b.type === 'image',
+        isTimer: b.type === 'timer',
+        isTip: b.type === 'tip',
+        isStep: b.type === 'step',
+        isIngredients: b.type === 'ingredients',
+        isTools: b.type === 'tools',
+        isDivider: b.type === 'divider'
+      };
+    });
+    const opts = [
+      ['text', 'Text', 'iText', '#F0E9E2'],
+      ['heading', 'Heading', 'iHeading', '#F0E9E2'],
+      ['image', 'Photo', 'iImage', '#F1DCD5'],
+      ['timer', 'Timer', 'iTimer', '#DDE6DA'],
+      ['tip', 'Tip', 'iTip', '#F7EEDB'],
+      ['ingredients', 'Ingredients', 'iList', '#E4E0EC'],
+      ['tools', 'Tools', 'iTools', '#EFE6D8'],
+      ['step', 'Step', 'iStep', '#DDE6DA'],
+      ['divider', 'Divider', 'iDivider', '#F0E9E2']
+    ];
+    const options = opts.map(([type, label, icon, bg]) => ({ label, bg, [icon]: true, add: () => this.add(type) }));
+    const open = this.state.sheetOpen;
+    return {
+      blocks,
+      options,
+      sheetOpen: open,
+      plusBg: open ? '#3D3632' : '#5E7A64',
+      plusFg: '#FFFFFF',
+      toggleSheet: () => this.setState({ sheetOpen: !open })
+    };
+  }
+}
+</script>
+</body>
+</html>

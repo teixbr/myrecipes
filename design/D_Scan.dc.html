@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Review scanned recipe, soft photo-led</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,100&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: {{t.bg}}; color: #3D3632; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; position: relative">
+  <div style="padding: 60px 22px 0; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="{{backHref}}" style="font-size: 15px; font-weight: 600; color: {{t.accentInk}}; text-decoration: none; padding: 10px 0">Retake</a>
+      <span style="font-size: 15px; font-weight: 700">Check what I found</span>
+      <span style="width: 52px"></span>
+    </div>
+    <div style="display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 24px; background: #FFFFFF">
+      <div style="width: 62px; height: 78px; flex: none; border-radius: 14px; background: {{t.paper}}; display: flex; flex-direction: column; gap: 5px; padding: 10px 8px; box-sizing: border-box">
+        <div style="height: 4px; width: 70%; border-radius: 2px; background: {{t.paperLine}}"></div>
+        <div style="height: 3px; width: 90%; border-radius: 2px; background: {{t.paperLine}}; opacity: 0.7"></div>
+        <div style="height: 3px; width: 80%; border-radius: 2px; background: {{t.paperLine}}; opacity: 0.7"></div>
+        <div style="height: 3px; width: 85%; border-radius: 2px; background: {{t.paperLine}}; opacity: 0.7"></div>
+        <div style="height: 3px; width: 60%; border-radius: 2px; background: {{t.paperLine}}; opacity: 0.7"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 5px; flex: 1">
+        <label for="td" style="font-size: 12px; font-weight: 600; color: #756C66">Title</label>
+        <input id="td" value="Gran's banana bread" style="height: 42px; box-sizing: border-box; padding: 0 14px; border: none; border-radius: 21px; background: #F5EFE9; font: inherit; font-size: 16px; font-weight: 700; color: #3D3632">
+        <span style="font-size: 12px; color: #756C66">Read on-device · 7 ingredients, 4 steps</span>
+      </div>
+    </div>
+  </div>
+  <div style="flex: 1; overflow: hidden; padding: 18px 22px 0; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between">
+      <h2 style="margin: 0; font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 100; font-size: 20px; font-weight: 500">Ingredients</h2>
+      <span style="font-size: 12px; color: #756C66">Tap a tag to move a line</span>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 22px; padding: 2px 14px">
+      <sc-for list="{{ingredients}}" as="l" hint-placeholder-count="4">
+        <div style="display: flex; align-items: center; gap: 10px; min-height: 44px; border-bottom: 1px solid #F0E9E2">
+          <span style="flex: 1; font-size: 15px">{{l.text}}</span>
+          <button style="flex: none; height: 28px; padding: 0 12px; border-radius: 14px; border: none; background: {{t.tag}}; color: {{t.tagInk}}; font: inherit; font-size: 12px; font-weight: 700">Ingredient</button>
+        </div>
+      </sc-for>
+      <div style="display: flex; align-items: center; gap: 10px; min-height: 48px; margin: 0 -14px; padding: 0 14px; background: {{t.flag}}; border-radius: 0 0 22px 22px">
+        <span style="flex: 1; font-size: 15px">Preheat oven to 180°C</span>
+        <button style="flex: none; height: 28px; padding: 0 12px; border-radius: 14px; border: 1px solid #3D3632; background: #FFFFFF; color: #3D3632; font: inherit; font-size: 12px; font-weight: 700">Not sure?</button>
+      </div>
+    </div>
+    <h2 style="margin: 8px 0 0; font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 100; font-size: 20px; font-weight: 500">Method</h2>
+    <div style="background: #FFFFFF; border-radius: 22px; padding: 4px 14px">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="2">
+        <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #F0E9E2">
+          <span style="flex: none; width: 26px; height: 26px; border-radius: 13px; background: {{t.accent}}; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{s.n}}</span>
+          <span style="flex: 1; font-size: 15px; line-height: 1.45">{{s.text}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="padding: 14px 22px 34px">
+    <a href="{{doneHref}}" style="height: 56px; border-radius: 28px; background: {{t.accent}}; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px {{t.glow}}">Looks good — save recipe</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"palette":{"editor":"enum","options":["sage","blush"],"default":"sage"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props.palette ?? 'sage';
+    const sage = { bg: '#FAF6F2', accent: '#5E7A64', accentInk: '#4A6350', glow: 'rgba(94,122,100,0.30)', tag: '#DDE6DA', tagInk: '#3F5545', flag: '#F7EEDB', paper: '#EFE6D8', paperLine: '#C9BCA6' };
+    const blush = { bg: '#FCF6F5', accent: '#A85A66', accentInk: '#954C58', glow: 'rgba(168,90,102,0.30)', tag: '#F6DEE1', tagInk: '#7A3D47', flag: '#EEF2EC', paper: '#F6DEE1', paperLine: '#D9A9B0' };
+    const t = p === 'blush' ? blush : sage;
+    return {
+      t,
+      backHref: p === 'blush' ? 'E_Library.dc.html' : 'D_Library.dc.html',
+      doneHref: p === 'blush' ? 'E_Library.dc.html' : 'D_Library.dc.html',
+      ingredients: [
+        { text: '3 ripe bananas, mashed' },
+        { text: '75 g butter, melted' },
+        { text: '150 g light brown sugar' },
+        { text: '225 g self-raising flour' }
+      ],
+      steps: [
+        { n: '1', text: 'Mix the bananas, butter and sugar, then beat in the egg.' },
+        { n: '2', text: 'Fold in the flour and pour into a lined loaf tin.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

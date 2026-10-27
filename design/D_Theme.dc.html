@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Theme settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,100&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: {{t.bg}}; color: {{t.ink}}; font-family: 'DM Sans', system-ui, sans-serif; padding: 56px 22px 34px; display: flex; flex-direction: column; gap: 20px; overflow: hidden">
+  <div style="display: flex; align-items: center; gap: 12px">
+    <a href="D_Library.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; background: {{t.card}}; color: {{t.ink}}; display: flex; align-items: center; justify-content: center">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+    </a>
+    <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 100; font-weight: 500; font-size: 30px">Look &amp; feel</h1>
+  </div>
+  <div aria-label="Preview" style="padding: 14px; border-radius: 24px; background: {{t.card}}; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; gap: 10px">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+        <div style="height: 86px; border-radius: 16px; background: {{t.soft}}; position: relative">
+          <span style="position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 10px; background: {{t.card}}; font-size: 11px; font-weight: 600">40 min</span>
+        </div>
+        <span style="font-size: 13px; font-weight: 600">Mushroom risotto</span>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+        <div style="height: 86px; border-radius: 16px; background: {{t.soft2}}; position: relative">
+          <span style="position: absolute; left: 8px; bottom: 8px; padding: 3px 8px; border-radius: 10px; background: {{t.card}}; font-size: 11px; font-weight: 600">2 h</span>
+        </div>
+        <span style="font-size: 13px; font-weight: 600">Berry pavlova</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; align-items: center">
+      <span style="height: 32px; padding: 0 12px; border-radius: 16px; background: {{t.soft}}; font-size: 12px; font-weight: 600; display: flex; align-items: center">Dinner</span>
+      <span style="height: 32px; padding: 0 12px; border-radius: 16px; background: {{t.soft2}}; font-size: 12px; font-weight: 600; display: flex; align-items: center">Baking</span>
+      <span style="margin-left: auto; height: 40px; padding: 0 16px; border-radius: 20px; background: {{t.accent}}; color: {{t.onAccent}}; font-size: 13px; font-weight: 700; display: flex; align-items: center">Start cooking</span>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-size: 12px; font-weight: 700; color: {{t.muted}}; text-transform: uppercase; letter-spacing: 0.05em">Colour theme</h2>
+    <div role="radiogroup" aria-label="Colour theme" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+      <sc-for list="{{themes}}" as="th" hint-placeholder-count="6">
+        <button role="radio" aria-checked="{{th.on}}" onClick="{{th.pick}}" style="padding: 10px; border-radius: 20px; border: 2px solid {{th.ring}}; background: {{t.card}}; color: {{t.ink}}; font: inherit; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer">
+          <span aria-hidden="true" style="display: flex">
+            <span style="width: 24px; height: 24px; border-radius: 12px; background: {{th.a}}; border: 2px solid {{t.card}}"></span>
+            <span style="width: 24px; height: 24px; margin-left: -8px; border-radius: 12px; background: {{th.s}}; border: 2px solid {{t.card}}"></span>
+            <span style="width: 24px; height: 24px; margin-left: -8px; border-radius: 12px; background: {{th.s2}}; border: 2px solid {{t.card}}"></span>
+          </span>
+          <span style="font-size: 13px; font-weight: 600">{{th.name}}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-size: 12px; font-weight: 700; color: {{t.muted}}; text-transform: uppercase; letter-spacing: 0.05em">Appearance</h2>
+    <div role="radiogroup" aria-label="Appearance" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 24px; background: {{t.card}}">
+      <sc-for list="{{modes}}" as="m" hint-placeholder-count="3">
+        <button role="radio" aria-checked="{{m.on}}" onClick="{{m.pick}}" style="height: 42px; border: none; border-radius: 20px; background: {{m.bg}}; color: {{m.fg}}; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">{{m.label}}</button>
+      </sc-for>
+    </div>
+  </div>
+  <p style="margin: auto 0 0; text-align: center; font-size: 13px; color: {{t.muted}}">Changes apply to the whole app straight away.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { theme: 'Sage', mode: 'Light' };
+  }
+  renderVals() {
+    const P = {
+      Sage:     { a: '#5E7A64', s: '#DDE6DA', s2: '#F1DCD5', bg: '#FAF6F2', dA: '#B9CFB8', dBg: '#1F2621', dCard: '#2B342D', dS: '#3A4A3E', dS2: '#4A3B3A' },
+      Blush:    { a: '#A85A66', s: '#F6DEE1', s2: '#DDE6DA', bg: '#FCF6F5', dA: '#F0C3CA', dBg: '#261E20', dCard: '#33282B', dS: '#4D3A3F', dS2: '#3A4A3E' },
+      Lavender: { a: '#6B6385', s: '#E4E0EC', s2: '#F1DCD5', bg: '#F8F6FA', dA: '#CFC7E6', dBg: '#201E26', dCard: '#2C2933', dS: '#3F3A4D', dS2: '#4A3B3A' },
+      Clay:     { a: '#9C5A40', s: '#F3E3D3', s2: '#DDE6DA', bg: '#FBF6F0', dA: '#E9BFA5', dBg: '#26201C', dCard: '#332A25', dS: '#4D3D33', dS2: '#3A4A3E' },
+      Ocean:    { a: '#3F6E7A', s: '#D7E6E8', s2: '#EFE6D8', bg: '#F5F8F8', dA: '#A9D0D8', dBg: '#1B2325', dCard: '#263033', dS: '#344A4F', dS2: '#4A4236' },
+      Oat:      { a: '#6B5B4B', s: '#EFE6D8', s2: '#E4E0EC', bg: '#FAF7F2', dA: '#D9C9B4', dBg: '#23201C', dCard: '#2F2B26', dS: '#463F36', dS2: '#3F3A4D' }
+    };
+    const p = P[this.state.theme];
+    const dark = this.state.mode === 'Dark';
+    const t = dark
+      ? { bg: p.dBg, card: p.dCard, ink: '#F2EEEA', muted: '#B9B0A9', accent: p.dA, onAccent: p.dBg, soft: p.dS, soft2: p.dS2 }
+      : { bg: p.bg, card: '#FFFFFF', ink: '#3D3632', muted: '#756C66', accent: p.a, onAccent: '#FFFFFF', soft: p.s, soft2: p.s2 };
+    const themes = Object.keys(P).map((name) => ({
+      name, a: P[name].a, s: P[name].s, s2: P[name].s2,
+      on: name === this.state.theme,
+      ring: name === this.state.theme ? t.accent : 'transparent',
+      pick: () => this.setState({ theme: name })
+    }));
+    const modes = ['Light', 'Dark', 'Auto'].map((label) => ({
+      label, on: label === this.state.mode,
+      bg: label === this.state.mode ? t.accent : 'transparent',
+      fg: label === this.state.mode ? t.onAccent : t.ink,
+      pick: () => this.setState({ mode: label })
+    }));
+    return { t, themes, modes };
+  }
+}
+</script>
+</body>
+</html>
