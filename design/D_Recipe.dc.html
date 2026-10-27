@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Method with timers</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,100&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FAF6F2; color: #3D3632; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden; position: relative">
+  <div style="height: 170px; flex: none; background: #EFE6D8; position: relative; display: flex; align-items: center; justify-content: center">
+    <svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#3D3632" stroke-opacity="0.3" stroke-width="1.3" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="9" cy="10" r="1.6"></circle><path d="M21 16l-5-5-8 8"></path></svg>
+    <a href="D_Library.dc.html" aria-label="Back to recipes" style="position: absolute; top: 56px; left: 18px; width: 44px; height: 44px; border-radius: 22px; background: rgba(255,255,255,0.92); display: flex; align-items: center; justify-content: center; color: #3D3632">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+    </a>
+  </div>
+  <div style="flex: 1; margin-top: -26px; border-radius: 26px 26px 0 0; background: #FAF6F2; padding: 22px 22px 0; display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden">
+    <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 100; font-weight: 500; font-size: 28px; line-height: 1.1">Mushroom risotto</h1>
+    <div role="tablist" aria-label="Recipe sections" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; background: #F0E9E2; border-radius: 22px">
+      <button role="tab" aria-selected="false" style="height: 40px; border: none; border-radius: 18px; background: transparent; color: #756C66; font: inherit; font-size: 14px">Ingredients</button>
+      <button role="tab" aria-selected="false" style="height: 40px; border: none; border-radius: 18px; background: transparent; color: #756C66; font: inherit; font-size: 14px">Tools</button>
+      <button role="tab" aria-selected="true" style="height: 40px; border: none; border-radius: 18px; background: #FFFFFF; color: #3D3632; font: inherit; font-size: 14px; font-weight: 600">Method</button>
+    </div>
+    <p style="margin: 0; font-size: 13px; color: #756C66">Tap a time to start a timer.</p>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <div style="display: flex; gap: 12px; align-items: flex-start; padding: 14px; background: #FFFFFF; border-radius: 20px">
+          <span style="flex: none; width: 28px; height: 28px; border-radius: 14px; background: #DDE6DA; color: #3F5545; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{s.n}}</span>
+          <p style="margin: 0; flex: 1; font-size: 15px; line-height: 1.6">{{s.before}}<sc-if value="{{s.hasTimer}}" hint-placeholder-val="{{false}}"><button onClick="{{s.add}}" aria-label="Start {{s.label}} timer" style="display: inline-flex; align-items: center; gap: 5px; height: 30px; padding: 0 11px; margin: 0 2px; border-radius: 15px; border: none; background: #5E7A64; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; vertical-align: middle; cursor: pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg>{{s.chip}}</button></sc-if>{{s.after}}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <sc-if value="{{hasTimers}}" hint-placeholder-val="{{true}}">
+    <div style="position: absolute; left: 14px; right: 14px; bottom: 28px; padding: 8px; border-radius: 26px; background: #2E3A31; color: #FAF6F2; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 12px 30px rgba(46,58,49,0.35)">
+      <sc-for list="{{timers}}" as="t" hint-placeholder-count="2">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 6px 8px 6px 14px; border-radius: 20px; background: #3E4B41">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B9CFB8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 1px">
+            <span style="font-size: 12px; color: #C3CCC1">{{t.label}}</span>
+            <span style="font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1">{{t.display}}</span>
+          </span>
+          <button onClick="{{t.toggle}}" aria-label="{{t.toggleLabel}}" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: #B9CFB8; color: #2E3A31; display: flex; align-items: center; justify-content: center; cursor: pointer">
+            <sc-if value="{{t.running}}" hint-placeholder-val="{{true}}">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+            </sc-if>
+            <sc-if value="{{t.paused}}" hint-placeholder-val="{{false}}">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l12 8-12 8z"></path></svg>
+            </sc-if>
+          </button>
+          <button onClick="{{t.remove}}" aria-label="Stop {{t.label}} timer" style="width: 44px; height: 44px; border-radius: 22px; border: none; background: transparent; color: #C3CCC1; display: flex; align-items: center; justify-content: center; cursor: pointer">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+          </button>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { timers: [{ id: 'roast', label: 'Roast mushrooms', remaining: 12 * 60 + 5, running: true }] };
+  }
+  componentDidMount() {
+    this.tick = setInterval(() => {
+      this.setState({ timers: this.state.timers.map((t) => (t.running && t.remaining > 0 ? { ...t, remaining: t.remaining - 1 } : t)) });
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this.tick); }
+  fmt(s) {
+    const m = Math.floor(s / 60), r = s % 60;
+    return (m < 10 ? '0' : '') + m + ':' + (r < 10 ? '0' : '') + r;
+  }
+  add(id, label, minutes) {
+    if (this.state.timers.some((t) => t.id === id)) return;
+    this.setState({ timers: [...this.state.timers, { id, label, remaining: minutes * 60, running: true }].slice(-2) });
+  }
+  renderVals() {
+    const steps = [
+      { n: '1', before: 'Roast the mushrooms with a little oil for ', hasTimer: true, chip: '12 min', label: 'Roast mushrooms', id: 'roast', minutes: 12, after: ' until golden.' },
+      { n: '2', before: 'Soften the onion and garlic in butter for ', hasTimer: true, chip: '5 min', label: 'Soften onion', id: 'onion', minutes: 5, after: '.' },
+      { n: '3', before: 'Add the rice, then the wine. Add stock a ladle at a time and simmer for ', hasTimer: true, chip: '28 min', label: 'Simmer risotto', id: 'simmer', minutes: 28, after: ', stirring often.' },
+      { n: '4', before: 'Stir in the mushrooms and parmesan. Rest for ', hasTimer: true, chip: '2 min', label: 'Rest', id: 'rest', minutes: 2, after: ' before serving.' }
+    ].map((s) => ({ ...s, add: () => this.add(s.id, s.label, s.minutes) }));
+    const timers = this.state.timers.map((t) => ({
+      ...t,
+      display: t.remaining === 0 ? 'Done' : this.fmt(t.remaining),
+      paused: !t.running,
+      toggleLabel: t.running ? 'Pause ' + t.label : 'Resume ' + t.label,
+      toggle: () => this.setState({ timers: this.state.timers.map((x) => (x.id === t.id ? { ...x, running: !x.running } : x)) }),
+      remove: () => this.setState({ timers: this.state.timers.filter((x) => x.id !== t.id) })
+    }));
+    return { steps, timers, hasTimers: timers.length > 0 };
+  }
+}
+</script>
+</body>
+</html>

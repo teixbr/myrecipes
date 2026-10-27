@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Add a recipe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..600,100&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #D9D2CB; font-family: 'DM Sans', system-ui, sans-serif; position: relative; overflow: hidden">
+  <div style="position: absolute; left: 0; right: 0; top: 56px; bottom: 0; background: #FAF6F2; color: #3D3632; border-radius: 28px 28px 0 0; padding: 12px 22px 0; display: flex; flex-direction: column; gap: 20px">
+    <div style="align-self: center; width: 40px; height: 5px; border-radius: 3px; background: #DCD3CB"></div>
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <h1 style="margin: 0; font-family: Fraunces, Georgia, serif; font-variation-settings: 'SOFT' 100; font-weight: 500; font-size: 28px">Add a recipe</h1>
+      <a href="D_Library.dc.html" style="font-size: 15px; font-weight: 600; color: #4A6350; text-decoration: none; padding: 10px 0">Cancel</a>
+    </div>
+    <div style="background: #FFFFFF; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 2px rgba(61,54,50,0.05), 0 4px 16px rgba(61,54,50,0.04)">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <span style="width: 38px; height: 38px; border-radius: 19px; background: #DDE6DA; color: #4A6350; display: flex; align-items: center; justify-content: center">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"></path></svg>
+        </span>
+        <label for="urld" style="font-size: 15px; font-weight: 700">From a website</label>
+      </div>
+      <input id="urld" placeholder="Paste a recipe link" style="height: 50px; box-sizing: border-box; padding: 0 18px; border: none; border-radius: 25px; background: #F5EFE9; font: inherit; font-size: 15px; color: #3D3632">
+      <button style="height: 50px; border: none; border-radius: 25px; background: {{accent}}; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 700; box-shadow: 0 8px 20px rgba(94,122,100,0.25)">Import recipe</button>
+      <p style="margin: 0; font-size: 13px; color: #756C66; line-height: 1.4">Tip: in Safari, tap Share and pick this app.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+      <a href="D_Scan.dc.html" style="background: #F1DCD5; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 10px; color: #3D3632; text-decoration: none">
+        <span style="width: 46px; height: 46px; border-radius: 23px; background: #FFFFFF; color: #9C5A4C; display: flex; align-items: center; justify-content: center">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+        </span>
+        <span style="font-weight: 700; font-size: 15px">Take a photo</span>
+        <span style="font-size: 13px; color: #5E5550; line-height: 1.35">Cookbook page or a handwritten card</span>
+      </a>
+      <a href="D_Scan.dc.html" style="background: #E4E0EC; border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 10px; color: #3D3632; text-decoration: none">
+        <span style="width: 46px; height: 46px; border-radius: 23px; background: #FFFFFF; color: #6B6385; display: flex; align-items: center; justify-content: center">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="1.8"></circle><path d="M21 16l-5-5-9 9"></path></svg>
+        </span>
+        <span style="font-weight: 700; font-size: 15px">From Photos</span>
+        <span style="font-size: 13px; color: #5E5550; line-height: 1.35">Screenshots work too</span>
+      </a>
+    </div>
+    <a href="D_Editor.dc.html" style="height: 56px; border-radius: 28px; background: #EFE6D8; color: #3D3632; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg>Write one myself</a>
+    <p style="margin: auto 0 38px; text-align: center; font-size: 13px; color: #756C66; line-height: 1.4">Everything stays on this iPhone — no account, no uploads.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#5E7A64","options":["#5E7A64","#9C5A4C","#6B6385","#3D3632"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#5E7A64' };
+  }
+}
+</script>
+</body>
+</html>
